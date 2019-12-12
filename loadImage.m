@@ -1,0 +1,2 @@
+function imMatrix = loadImage(im)    imRGB = imread(im);  if(size(size(imRGB),2) > 2)    imGray = rgb2gray(imRGB);  else    imGray = imRGB;  endif  inverseGrayImage = uint8(255) - imGray;#  inverseGrayImage = 10*inverseGrayImage;  im2020 = imresize(inverseGrayImage, [25 25]);  imRowVector = double(im2020(:)');  imMatrix = normalizeVector(imRowVector(:)');  imMatrix = reshape(imRowVector(:)', 25, 25);  imagesc(imMatrix, [-255 255])  imMatrix = imclean(imMatrix);  imMatrix = imMatrix(:)';  
+endfunction
